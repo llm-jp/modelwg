@@ -7,6 +7,8 @@ OUTPUT_HUGGINGFACE_CHECKPOINT_DIR=$2
 SOURCE_HUGGINGFACE_TOKENIZER_DIR=$3
 TEMP_MEGATRON_CHECKPOINT_DIR=${OUTPUT_HUGGINGFACE_CHECKPOINT_DIR}.megatron_tp1_pp1.tmp
 
+source Megatron-Llama2/venv/bin/activate
+
 echo ==========================================
 echo Phase 1: Merge TPs and PPs
 echo python Megatron-Llama2/tools/checkpoint/util.py \
