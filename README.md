@@ -1,5 +1,7 @@
 # LLM-jp Model-WG working directory
 
+https://github.com/llm-jp/modelwg
+
 ## Megatron to Hugging Face Llama2 Model Converter
 
 ### Install
