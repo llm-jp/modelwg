@@ -4,6 +4,9 @@ https://github.com/llm-jp/modelwg
 
 ## Megatron to Hugging Face Llama2 Model Converter
 
+We'ew using Megatron to Hugging Face Llama2 converter implemented by Fujii-san.  
+https://github.com/rioyokotalab/Megatron-Llama2
+
 ### Install
 
 ```console
