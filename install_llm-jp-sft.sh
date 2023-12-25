@@ -6,4 +6,5 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -U pip setuptools wheel
 pip install -r requirements.in
+ln -s /model/tuning_eval_data/20231204/tuning/train/ dataset
 cd ..
