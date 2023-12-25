@@ -40,9 +40,13 @@ if branch_name != "main":
         print(f"branch {branch_name} already exists, try again...")
 print(f"to upload: {files}")
 for file in files:
+    path_or_file = os.path.join(converted_ckpt, file)
+    # checkpointなどのディレクトリを回避
+    if not os.path.isfile(path_or_file):
+        continue
     print(f"Uploading {file} to branch {branch_name}...")
     api.upload_file(
-        path_or_fileobj=os.path.join(converted_ckpt, file),
+        path_or_fileobj=path_or_file,
         path_in_repo=file,
         repo_id=repo_name,
         repo_type="model",
