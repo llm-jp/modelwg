@@ -11,7 +11,6 @@ def main():
         create_repo(repo_name, repo_type="model", private=True)
     except:
         print("repo {repo_name} already exists and will be upload target.")
-        pass
 
     api = HfApi()
     if branch_name != "main":
