@@ -33,7 +33,8 @@ Example:
 ### Upload to HF
 
 ```console
-python upload_to_hf.py /model/7B_HF/llm-jp-7b-63500step.code10K_en20K_ja30K_ver2.2/ llm-jp/7b-v1.0.1-63500step.code10K_en20K_ja30K_ver2.2 main
+$ source Megatron-Llama2/venv/bin/activate
+$ python upload_to_hf.py /model/7B_HF/llm-jp-7b-63500step.code10K_en20K_ja30K_ver2.2/ llm-jp/7b-v1.0.1-63500step.code10K_en20K_ja30K_ver2.2 main
 ```
 
 ## Supervised Fine-tuning with llm-jp-sft
@@ -60,8 +61,8 @@ $ source venv/bin/activate
 
 For Llama models:
 ```console
-$ CUDA_VISIBLE_DEVICES=0 mdx/train_peft_single_gpu.sh /model/7B_HF/model_name/ /model/7B_HF/model_name/ dataset/ mdx/dataset_jaster.sh 5 /model/7B_HF/model_name-jaster-lora-all 1 64 --peft_target_model llama-all
-$ CUDA_VISIBLE_DEVICES=0 mdx/train_peft_single_gpu.sh /model/7B_HF/model_name/ /model/7B_HF/model_name/ dataset/ mdx/dataset_gpt4_self_inst_ja.sh 5 /model/7B_HF/model_name-self-inst-lora-all 1 64 --peft_target_model llama-all
+$ CUDA_VISIBLE_DEVICES=0 mdx/train_peft_single_gpu.sh /model/7B_HF/model_name/ /model/7B_HF/model_name/ dataset/ mdx/dataset_jaster.sh 5 /model/7B_HF/model_name-jaster-lora-all 2 32 --peft_target_model llama-all
+$ CUDA_VISIBLE_DEVICES=0 mdx/train_peft_single_gpu.sh /model/7B_HF/model_name/ /model/7B_HF/model_name/ dataset/ mdx/dataset_gpt4_self_inst_ja.sh 5 /model/7B_HF/model_name-self-inst-lora-all 2 32 --peft_target_model llama-all
 ```
 
 For GPT-2 models:
