@@ -58,7 +58,7 @@ $ ./install_convert2hf-175b.sh
 
 Example:
 ```console
-./convert_mds-175b_to_hf_gpt2.sh /model/175B/global_checkpoint21000/ /model/175B_HF/llm-jp-175b-21k/ /model/llm-jp-tokenizer/hf/ver2.2/code20K_en40K_ja60K.ver2.2_hf_fast.b4/
+$ ./convert_mds-175b_to_hf_gpt2.sh /model/175B/global_checkpoint21000/ /model/175B_HF/llm-jp-175b-21k/ /model/llm-jp-tokenizer/hf/ver2.2/code20K_en40K_ja60K.ver2.2_hf_fast.b4/
 ```
 
 
