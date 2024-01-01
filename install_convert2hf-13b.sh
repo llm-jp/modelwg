@@ -7,7 +7,7 @@ source venv/bin/activate
 pip install -U pip setuptools wheel
 pip install torch==2.0.1+cu118 --index-url https://download.pytorch.org/whl/cu118
 pip install -e .
-pip install deepspeed six safetensors transformers
+pip install deepspeed six safetensors transformers sentencepiece
 git clone https://github.com/NVIDIA/apex -b 23.08
 cd apex
 pip install -v --disable-pip-version-check --no-cache-dir --no-build-isolation --config-settings "--build-option=--cpp_ext" --config-settings "--build-option=--cuda_ext" ./
