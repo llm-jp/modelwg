@@ -72,7 +72,7 @@ $ ./install_convert2hf-13b.sh
 #### Conversion
 
 - Input Megatron-LM checkpoint path
-  - `/model/llmjp0/Megatron-DeepSpeed/outputs/checkpoint/ds_gpt_v101_fattn_nfs_0825-gpt_1.3B_fold00_gpu96_node12_lr2.0e-4_gbs1536_mbs4_nwk8_zero1_pp1/global_step8654/`
+  - `/model/13B/ds_gpt_v101_fattn_nfs_0825-gpt_1.3B_fold00_gpu96_node12_lr2.0e-4_gbs1536_mbs4_nwk8_zero1_pp1/global_step8654/`
 - Output Hugging Face model path
   - `/model/13B_HF/llm-jp-13b-v1.0/`
 - Hugging Face tokenizer model path
@@ -80,7 +80,7 @@ $ ./install_convert2hf-13b.sh
 
 Example:
 ```console
-$ ./convert_mds-13b_to_hf_gpt2.sh /model/llmjp0/Megatron-DeepSpeed/outputs/checkpoint/ds_gpt_v101_fattn_nfs_0825-gpt_1.3B_fold00_gpu96_node12_lr2.0e-4_gbs1536_mbs4_nwk8_zero1_pp1/global_step8654/ /model/13B_HF/llm-jp-13b-v1.0/ /model/llm-jp-tokenizer/hf/ver2.1/code10k_en20k_ja30k.ver2.1_hf_fast/
+$ ./convert_mds-13b_to_hf_gpt2.sh /model/13B/ds_gpt_v101_fattn_nfs_0825-gpt_1.3B_fold00_gpu96_node12_lr2.0e-4_gbs1536_mbs4_nwk8_zero1_pp1/global_step8654/ /model/13B_HF/llm-jp-13b-v1.0/ /model/llm-jp-tokenizer/hf/ver2.1/code10k_en20k_ja30k.ver2.1_hf_fast/
 ```
 
 ## Supervised Fine-tuning with llm-jp-sft
