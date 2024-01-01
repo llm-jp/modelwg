@@ -1,7 +1,7 @@
 #!/bin/bash
 
-git clone https://github.com/llm-jp/Megatron-DeepSpeed.git -b llmjp0/dev convert2hf-13b
-cd convert2hf-13b
+git clone https://github.com/llm-jp/Megatron-DeepSpeed.git -b convert2hf convert2hf-175b
+cd convert2hf-175b/
 python3 -m venv venv
 source venv/bin/activate
 pip install -U pip setuptools wheel
