@@ -37,6 +37,31 @@ $ source Megatron-Llama2/venv/bin/activate
 $ python upload_to_hf.py /model/7B_HF/llm-jp-7b-63500step.code10K_en20K_ja30K_ver2.2/ llm-jp/7b-v1.0.1-63500step.code10K_en20K_ja30K_ver2.2 main
 ```
 
+## Megatron-DeepSpeed to Hugging Face GPT2 converter
+
+### 175B version
+
+#### Install
+
+```console
+$ ./install_convert2hf-175b.sh
+```
+
+#### Conversion
+
+- Input Megatron-LM checkpoint path
+  - `/model/175B/global_checkpoint21000/`
+- Output Hugging Face model path
+  - `/model/175B_HF/llm-jp-175b-21k/`
+- Hugging Face tokenizer model path
+  - `/model/llm-jp-tokenizer/hf/ver2.2/code20K_en40K_ja60K.ver2.2_hf_fast.b4/`
+
+Example:
+```console
+./convert_mds-175b_to_hf_gpt2.sh /model/175B/global_checkpoint21000/ /model/175B_HF/llm-jp-175b-21k/ /model/llm-jp-tokenizer/hf/ver2.2/code20K_en40K_ja60K.ver2.2_hf_fast.b4/
+```
+
+
 ## Supervised Fine-tuning with llm-jp-sft
 
 https://github.com/llm-jp/llm-jp-sft/
