@@ -152,6 +152,27 @@ $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_n
 
 ## Pre-training Settings
 
+### Run Monitoring
+
+#### Install
+
+```console
+$ ./install_run_sitter.sh
+```
+
+#### Set up Environment Variable
+
+Set `SLACK_WEBHOOK_URL` value in `./run_sitter.sh`.
+
+#### Launch Monitoring Process
+
+Before launching `./run_sitter.sh`, get the `Run path` value from wandb Run Overview page.
+The format of `Run path` is like `llm-jp/megatron-lm-13B-2023-1225/o2uz07wk`.
+
+```console
+$ ./run_sitter.sh RUN_PATH &
+```
+
 ### llm-jp-llama-2
 
 #### 13b-llm-jp-v2_CC_50k
