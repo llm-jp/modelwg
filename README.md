@@ -102,8 +102,16 @@ $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_n
 $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_name_or_path=/model/7B_HF/model_name/ tokenizer.pretrained_model_name_or_path=/model/7B_HF/model_name/ dataset_dir=dataset/tuning/dev target_dataset=gpt4_self_inst_ja wandb.run_name=model_name
 ```
 
-## llm-jp-llama-2
+## Pre-training Settings
+
+### llm-jp-llama-2
+
+#### 13b-llm-jp-v2_CC_50k
+
 ```console
+$ sudo su llmjp0
+$ tmux ls
+$ tmux a -t SESSION_NAME
 $ cd /model/llmjp0/Megatron-LM
 $ bash scripts/mdx/llm-jp-llama-2-13b/13b-llm-jp-v2_CC_50k.sh >> 13b-llm-jp-v2_CC_50k_log 2>&1 &
 $ tail -f 13b-llm-jp-v2_CC_50k_log
