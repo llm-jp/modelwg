@@ -180,6 +180,7 @@ Set `SLACK_WEBHOOK_URL` to `./run_sitter_url.txt`.
 The format of `SLACK_WEBHOOK_URL` is like `https://hooks.slack.com/services/foo/bar`.
 
 ```console
+$ sudo su llmjp0
 $ nano run_sitter_url.txt
 > [paste SLACK_WEBHOOK_URL]
 $ chmod 600 run_sitter_url.txt
@@ -191,6 +192,7 @@ Before launching `./run_sitter.sh`, get the `Run path` value from wandb Run Over
 The format of `Run path` is like `llm-jp/megatron-lm-13B-2023-1225/o2uz07wk`.
 
 ```console
+$ sudo su llmjp0
 $ nohup ./run_sitter.sh RUN_PATH &> /dev/null &
 ```
 
