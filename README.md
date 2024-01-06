@@ -101,3 +101,9 @@ $ source venv/bin/activate
 $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_name_or_path=/model/7B_HF/model_name/ tokenizer.pretrained_model_name_or_path=/model/7B_HF/model_name/ target_dataset=all wandb.run_name=model_name
 $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_name_or_path=/model/7B_HF/model_name/ tokenizer.pretrained_model_name_or_path=/model/7B_HF/model_name/ dataset_dir=dataset/tuning/dev target_dataset=gpt4_self_inst_ja wandb.run_name=model_name
 ```
+
+## llm-jp-llama-2
+```console
+cd /model/llmjp0/Megatron-LM/scripts/mdx/llm-jp-llama-2-13b/
+bash 13b-llm-jp-v2_CC_50k.sh
+```
