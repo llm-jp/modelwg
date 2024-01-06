@@ -160,7 +160,6 @@ $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_n
 
 ```console
 $ ./install_run_sitter.sh
-$ chmod -R a+w run_sitter/
 ```
 
 ##### Initialize
@@ -190,7 +189,7 @@ The format of `Run path` is like `llm-jp/megatron-lm-13B-2023-1225/o2uz07wk`.
 
 ```console
 $ sudo su llmjp0
-$ nohup ./run_sitter.sh RUN_PATH &> /dev/null &
+$ nohup ./run_sitter.sh RUN_PATH &
 ```
 
 ### llm-jp-llama-2
