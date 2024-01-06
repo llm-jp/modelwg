@@ -164,7 +164,14 @@ $ ./install_run_sitter.sh
 
 ##### Environment Variable
 
-Set `SLACK_WEBHOOK_URL` value in `./run_sitter.sh`.
+Set `SLACK_WEBHOOK_URL` to `./run_sitter_url.txt`.
+The format of `SLACK_WEBHOOK_URL` is like `https://hooks.slack.com/services/foo/bar`.
+
+```console
+$ nano run_sitter_url.txt
+> [paste SLACK_WEBHOOK_URL]
+$ chmod 600 run_sitter_url.txt
+```
 
 ##### wandb
 
