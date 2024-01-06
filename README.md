@@ -37,6 +37,52 @@ $ source Megatron-Llama2/venv/bin/activate
 $ python upload_to_hf.py /model/7B_HF/llm-jp-7b-63500step.code10K_en20K_ja30K_ver2.2/ llm-jp/7b-v1.0.1-63500step.code10K_en20K_ja30K_ver2.2 main
 ```
 
+## Megatron-DeepSpeed to Hugging Face GPT2 converter
+
+### 175B version
+
+#### Install
+
+```console
+$ ./install_convert2hf-175b.sh
+```
+
+#### Conversion
+
+- Input Megatron-LM checkpoint path
+  - `/model/175B/global_step21000/`
+- Output Hugging Face model path
+  - `/model/175B_HF/llm-jp-175b-21k/`
+- Hugging Face tokenizer model path
+  - `/model/llm-jp-tokenizer/hf/ver2.2/code20K_en40K_ja60K.ver2.2_hf_fast.b4/`
+
+Example:
+```console
+$ ./convert_mds-13b_to_hf_gpt2.sh /model/175B/global_step21000/ /model/175B_HF/llm-jp-175b-21k/ /model/llm-jp-tokenizer/hf/ver2.2/code20K_en40K_ja60K.ver2.2_hf_fast.b4/
+```
+
+### 13B version
+
+#### Install
+
+```console
+$ ./install_convert2hf-13b.sh
+```
+
+#### Conversion
+
+- Input Megatron-LM checkpoint path
+  - `/model/13B/ds_gpt_v101_fattn_nfs_0825-gpt_1.3B_fold00_gpu96_node12_lr2.0e-4_gbs1536_mbs4_nwk8_zero1_pp1/global_step8654/`
+- Output Hugging Face model path
+  - `/model/13B_HF/llm-jp-13b-v1.0/`
+- Hugging Face tokenizer model path
+  - `/model/llm-jp-tokenizer/hf/ver2.1/code10k_en20k_ja30k.ver2.1_hf_fast/`
+
+Example:
+```console
+$ ./convert_mds-13b_to_hf_gpt2.sh /model/13B/ds_gpt_v101_fattn_nfs_0825-gpt_1.3B_fold00_gpu96_node12_lr2.0e-4_gbs1536_mbs4_nwk8_zero1_pp1/global_step8654/ /model/13B_HF/llm-jp-13b-v1.0/ /model/llm-jp-tokenizer/hf/ver2.1/code10k_en20k_ja30k.ver2.1_hf_fast/
+```
+
 ## Supervised Fine-tuning with llm-jp-sft
 
 https://github.com/llm-jp/llm-jp-sft/
