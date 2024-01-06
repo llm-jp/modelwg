@@ -162,18 +162,7 @@ $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_n
 $ ./install_run_sitter.sh
 ```
 
-##### Environment Variable
-
-Set `SLACK_WEBHOOK_URL` to `./run_sitter_url.txt`.
-The format of `SLACK_WEBHOOK_URL` is like `https://hooks.slack.com/services/foo/bar`.
-
-```console
-$ nano run_sitter_url.txt
-> [paste SLACK_WEBHOOK_URL]
-$ chmod 600 run_sitter_url.txt
-```
-
-##### wandb
+##### Weights & Biases
 
 ```console
 $ sudo su llmjp0
@@ -183,6 +172,17 @@ Which team should we use?
 (2) llm-jp
 Which project should we use?
 [select any project]
+```
+
+##### Slack
+
+Set `SLACK_WEBHOOK_URL` to `./run_sitter_url.txt`.
+The format of `SLACK_WEBHOOK_URL` is like `https://hooks.slack.com/services/foo/bar`.
+
+```console
+$ nano run_sitter_url.txt
+> [paste SLACK_WEBHOOK_URL]
+$ chmod 600 run_sitter_url.txt
 ```
 
 #### Launch Monitoring Process
