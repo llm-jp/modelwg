@@ -39,6 +39,9 @@ $ source Megatron-Llama2/venv/bin/activate
 $ python upload_to_hf.py /model/7B_HF/llm-jp-7b-63500step.code10K_en20K_ja30K_ver2.2/ llm-jp/7b-v1.0.1-63500step.code10K_en20K_ja30K_ver2.2 main
 ```
 
+If the `base_model` in the model card within the README of the model points to a path of a model located locally, the upload will fail.
+In that case, delete the `base_model` and leave a TODO note in the README to fill it in again when the model is published.
+
 ## Megatron-DeepSpeed to Hugging Face GPT2 converter
 
 ### 175B version
