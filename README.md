@@ -154,15 +154,29 @@ $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_n
 
 ### Run Monitoring
 
-#### Install
+#### Set up
+
+##### Install
 
 ```console
 $ ./install_run_sitter.sh
 ```
 
-#### Set up Environment Variable
+##### Environment Variable
 
 Set `SLACK_WEBHOOK_URL` value in `./run_sitter.sh`.
+
+##### wandb
+
+```console
+$ sudo su llmjp0
+$ source run_sitter/venv/bin/activate
+$ wandb init
+Which team should we use?
+(2) llm-jp
+Which project should we use?
+[select any project]
+```
 
 #### Launch Monitoring Process
 
@@ -170,7 +184,7 @@ Before launching `./run_sitter.sh`, get the `Run path` value from wandb Run Over
 The format of `Run path` is like `llm-jp/megatron-lm-13B-2023-1225/o2uz07wk`.
 
 ```console
-$ ./run_sitter.sh RUN_PATH &
+$ ./run_sitter.sh RUN_PATH
 ```
 
 ### llm-jp-llama-2
