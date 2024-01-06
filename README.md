@@ -104,6 +104,7 @@ $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_n
 
 ## llm-jp-llama-2
 ```console
-$ cd /model/llmjp0/Megatron-LM/scripts/mdx/llm-jp-llama-2-13b/
-$ bash 13b-llm-jp-v2_CC_50k.sh
+$ cd /model/llmjp0/Megatron-LM
+$ bash scripts/mdx/llm-jp-llama-2-13b/13b-llm-jp-v2_CC_50k.sh >> 13b-llm-jp-v2_CC_50k_log 2>&1 &
+$ tail -f 13b-llm-jp-v2_CC_50k_log
 ```
