@@ -160,6 +160,7 @@ $ CUDA_VISIBLE_DEVICES=0 python scripts/evaluate_llm.py model.pretrained_model_n
 
 ```console
 $ ./install_run_sitter.sh
+$ chmod -R a+w run_sitter/
 ```
 
 ##### Initialize
@@ -171,12 +172,14 @@ The format of `SLACK_WEBHOOK_URL` is like `https://hooks.slack.com/services/foo/
 $ sudo su llmjp0
 $ nano run_sitter_url.txt
 > [save SLACK_WEBHOOK_URL]
-$ source run_sitter/venv/bin/activate
+$ cd run_sitter/
+$ source venv/bin/activate
 $ wandb init
 Which team should we use?
 (2) llm-jp
 Which project should we use?
 [select any project]
+$ cd ..
 $ exit
 ```
 
