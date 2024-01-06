@@ -191,7 +191,7 @@ Before launching `./run_sitter.sh`, get the `Run path` value from wandb Run Over
 The format of `Run path` is like `llm-jp/megatron-lm-13B-2023-1225/o2uz07wk`.
 
 ```console
-$ ./run_sitter.sh RUN_PATH
+$ nohup ./run_sitter.sh RUN_PATH &> /dev/null &
 ```
 
 ### llm-jp-llama-2
