@@ -26,9 +26,12 @@ def main():
                 repo_type="model",
                 branch=branch_name,
             )
-        except:
-            print(f"branch {branch_name} already exists, try again...")
-            exit(1)
+        except HfHubHTTPError as e:
+            if str(e).startswith("409 Client Error: Conflict for url: "):
+                print(f"branch {branch_name} already exists, try again...")
+                exit(1)
+            else:
+                raise e
 
     print(f"to upload: {converted_ckpt}")
     uploaded_count = 0
