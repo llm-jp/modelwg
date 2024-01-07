@@ -34,13 +34,33 @@ Example:
 
 ### Upload to HF
 
+Before upload, you need to log in to Hugging Face via `huggingface-cli login` with an access token having write permission.
+You can create new access token [here](https://huggingface.co/settings/tokens).
+
+```console
+$ huggingface-cli login
+Token: [Your Write Token Here]
+Add token as git credential? (Y/n) Y
+Token is valid (permission: write).
+Your token has been saved in your configured git credential helpers (store).
+Your token has been saved to /home/username/.cache/huggingface/token
+Login successful
+```
+
+After logging in to Hugging Face, run script to upload models like below:
+
 ```console
 $ source Megatron-Llama2/venv/bin/activate
 $ python upload_to_hf.py /model/7B_HF/llm-jp-7b-63500step.code10K_en20K_ja30K_ver2.2/ llm-jp/7b-v1.0.1-63500step.code10K_en20K_ja30K_ver2.2 main
 ```
 
-If the `base_model` in the model card within the README of the model points to a path of a model located locally, the upload will fail.
-In that case, delete the `base_model` and leave a TODO note in the README to fill it in again when the model is published.
+If the `base_model` in the model card within the README.md of the model points to a path of a model located locally, the `base_model` line will be removed from README.md and a TODO memo will be added to the top of the model page like below:
+
+```
+**TODO: Add base_model description to model card section in Hugging Face Hub**
+```
+
+In this case, you need to edit README.md at the published model page to add `base_model` line and remove TODO line.
 
 ## Megatron-DeepSpeed to Hugging Face GPT2 converter
 
