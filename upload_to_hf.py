@@ -3,7 +3,8 @@ import sys
 import tempfile
 
 from huggingface_hub import HfApi, create_repo
-from huggingface_hub.utils._errors import BadRequestError
+from huggingface_hub.utils._errors import BadRequestError, HfHubHTTPError
+
 
 def main():
     converted_ckpt = sys.argv[1]
@@ -11,8 +12,11 @@ def main():
     branch_name = sys.argv[3]
     try:
         create_repo(repo_name, repo_type="model", private=True)
-    except:
-        print(f"repo {repo_name} already exists and will be upload target.")
+    except HfHubHTTPError as e:
+        if str(e).startswith("409 Client Error: Conflict for url: "):
+            print(f"repo {repo_name} already exists and will be upload target.")
+        else:
+            raise e
 
     api = HfApi()
     if branch_name != "main":
@@ -47,6 +51,7 @@ def main():
                 )
                 print(f"successfully uploaded {file}")
                 uploaded_count += 1
+                break
             except BadRequestError as e:
                 if file == "README.md":
                     temp_path, base_model_line = copy_with_base_model_filter(path_or_file)
