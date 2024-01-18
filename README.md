@@ -130,6 +130,16 @@ $ source venv/bin/activate
 
 ### Single-GPU LoRA SFT
 
+> [!NOTE]
+> Due to the design of the `SFTTrainer` class used in the SFT script, the information from the run will be stored in a project titled "huggingface" within the wandb account of the user who executed it.
+> 
+> To modify the target project for storing this information, you have the option to use the `wandb init` command to configure the project settings, or alternatively, you can set the environment variables as shown below:
+> 
+> ```bash
+> export WANDB_ENTITY=llm-jp
+> export WANDB_PROJECT=project_name
+> ```
+
 For Llama models:
 ```console
 $ CUDA_VISIBLE_DEVICES=0 mdx/train_peft_single_gpu.sh /model/7B_HF/model_name/ /model/7B_HF/model_name/ dataset/ mdx/dataset_jaster.sh 5 /model/7B_HF/model_name-jaster-lora-all 2 32 --peft_target_model llama-all
