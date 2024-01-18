@@ -131,9 +131,9 @@ $ source venv/bin/activate
 ### Single-GPU LoRA SFT
 
 > [!NOTE]
-> By default, run information is stored in a project called "huggingface" within the wandb account of the user who executed the run. 
+> Due to the design of the `SFTTrainer` class used in the SFT script, the information from the run will be stored in a project titled "huggingface" within the wandb account of the user who executed it.
 > 
-> To change the destination project, set the environment variables as shown below:
+> To modify the target project for storing this information, you have the option to use the `wandb init` command to configure the project settings, or alternatively, you can set the environment variables as shown below:
 > 
 > ```bash
 > export WANDB_ENTITY=llm-jp
