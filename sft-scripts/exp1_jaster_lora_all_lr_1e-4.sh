@@ -27,8 +27,8 @@ export WANDB_NAME="sft-exp1-${SFT_TYPE}"
 dataset_path="./dataset"
 dataset_sh="./mdx/dataset_jaster.sh"
 num_train_epochs=5
-per_device_train_batch_size=2
-gradient_accumulation_steps=32  # global_batch_size = per_device_train_batch_size * gradient_accumulation_steps = 64
+per_device_train_batch_size=1
+gradient_accumulation_steps=64  # global_batch_size = per_device_train_batch_size * gradient_accumulation_steps = 64
 peft_target_model="llama-all"
 max_seq_length=4096             # for llama model
 learning_rate="1e-4"
