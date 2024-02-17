@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Single GPU sft script
-# based on https://github.com/llm-jp/llm-jp-sft/blob/main/mdx/train_peft_single_gpu.sh
+# Single Node sft script
+# based on https://github.com/llm-jp/llm-jp-sft/blob/main/mdx/train_peft_multi_gpu.sh
 
 set -eux
 
@@ -10,8 +10,6 @@ SCRIPT_PATH="llm-jp-sft/"
 cd $SCRIPT_PATH
 source venv/bin/activate
 
-# Set CUDA Device (default: 0)
-export CUDA_VISIBLE_DEVICES="${CUDA_VISIBLE_DEVICES:-0}"
 
 # Target Model (TODO: Change if needed)
 TARGET_MODEL="/model/13B_HF/llm-jp-13b-cc-v2-63500step.code10K_en20K_ja30K_ver2.2" # exp6
@@ -24,18 +22,21 @@ export WANDB_PROJECT="13b-sft-and-eval"
 export WANDB_NAME="sft-exp6-${SFT_TYPE}"
 
 # Training settings
+config_file="configs/accelerate_config_zero3.yaml"
 dataset_path="./dataset"
 dataset_sh="./mdx/dataset_gpt4_self_inst_ja.sh"
 num_train_epochs=5
 per_device_train_batch_size=1
-gradient_accumulation_steps=64  # global_batch_size = per_device_train_batch_size * gradient_accumulation_steps = 64
+gradient_accumulation_steps=8  # global_batch_size = per_device_train_batch_size * n_gpus * gradient_accumulation_steps = 64
 peft_target_model="llama-all"
 max_seq_length=4096             # for llama model
 learning_rate="2e-5"
 lr_scheduler_type="cosine"
 warmup_ratio=0.1
 
-python train.py \
+# N_gpu = 8
+accelerate launch --config_file $config_file \
+    train.py \
     --model_name_or_path $TARGET_MODEL \
     --tokenizer_name_or_path $TARGET_MODEL \
     --use_peft \
