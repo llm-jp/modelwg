@@ -50,4 +50,5 @@ accelerate launch --config_file $config_file \
     --logging_steps 10 \
     --report_to wandb \
     --data_files $($dataset_sh $dataset_path) \
-    --output_dir "$OUTPUT_DIR"
+    --output_dir "$OUTPUT_DIR" \
+    --resume_from_latest_checkpoint
