@@ -23,7 +23,7 @@ export WANDB_NAME="sft-exp9-${SFT_TYPE}"
 export NCCL_DEBUG=WARN
 
 # Training settings
-config_file="configs/accelerate_config_zero3.yaml"
+config_file="configs/accelerate_config_zero2.yaml"
 dataset_path="./dataset"
 dataset_sh="./mdx/dataset_gpt4_self_inst_ja.sh"
 num_train_epochs=5
@@ -42,6 +42,7 @@ accelerate launch --config_file $config_file \
     --num_train_epochs $num_train_epochs \
     --per_device_train_batch_size $per_device_train_batch_size \
     --gradient_accumulation_steps $gradient_accumulation_steps \
+    --gradient_checkpointing \
     --learning_rate $learning_rate \
     --warmup_ratio $warmup_ratio \
     --lr_scheduler_type $lr_scheduler_type \
