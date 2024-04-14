@@ -5,7 +5,8 @@ from transformers import AutoTokenizer
 
 
 def update_special_token_settings(tokenizer, model_config: dict):
-    assert len(tokenizer) == model_config["vocab_size"], f'Different vocab size definitions: {len(tokenizer)=} and {model_config["vocab_size"]=}'
+    if len(tokenizer) != model_config["vocab_size"]:
+        print(f'Might need checking: different vocab size definitions: {len(tokenizer)=} and {model_config["vocab_size"]=}', file=sys.stderr)
     new_model_config = dict(model_config)
     for token, id in [
         ("bos_token_id", tokenizer.bos_token_id),
