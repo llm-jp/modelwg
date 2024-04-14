@@ -57,6 +57,11 @@ echo Phase 4: Copy Hugging Face Tokenizer files
 echo cp ${SOURCE_HUGGINGFACE_TOKENIZER_DIR}/* ${OUTPUT_HUGGINGFACE_CHECKPOINT_DIR}/
 cp ${SOURCE_HUGGINGFACE_TOKENIZER_DIR}/* ${OUTPUT_HUGGINGFACE_CHECKPOINT_DIR}/
 
+echo ==========================================
+echo Phase 5: Update model config with Hugging Face Tokenizer special token settings
+echo python convert_special_token_settings.py ${OUTPUT_HUGGINGFACE_CHECKPOINT_DIR}/
+python convert_special_token_settings.py ${OUTPUT_HUGGINGFACE_CHECKPOINT_DIR}/ 
+
 echo
 echo ls -l ${OUTPUT_HUGGINGFACE_CHECKPOINT_DIR}
 ls -l ${OUTPUT_HUGGINGFACE_CHECKPOINT_DIR}
