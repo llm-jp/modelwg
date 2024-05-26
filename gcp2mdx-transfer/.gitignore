@@ -3,3 +3,8 @@ rclone.conf
 
 # log
 log*
+logs/
+*.log
+
+# stamp
+stamps/
