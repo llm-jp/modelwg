@@ -45,7 +45,7 @@ checkpoints_50percent : $(_checkpoints_50percent)
 
 all : $(checkpoints_non_lustre) $(checkpoints_10percent) $(checkpoints_50percent)
 
-$(_checkpoints_non_lustre) : stamps/% : stamps logs
+$(_checkpoints_non_lustre) : stamps/% : stamps/dir logs/dir
 	./watch.py ${WATCH_FLAGS} \
 		rclone ${RCLONE_GLOBAL_FLAGS} copy \
 		${RCLONE_COPY_FLAGS} \
@@ -53,7 +53,7 @@ $(_checkpoints_non_lustre) : stamps/% : stamps logs
 		${SRC_BUCKET_NON_LUSTRE}/$*/ ${DEST_BUCKET}/$* && \
 	touch $(TOUCH_FLAGS) $@
 
-$(_checkpoints_10percent) : stamps/% : stamps logs
+$(_checkpoints_10percent) : stamps/% : stamps/dir logs/dir
 	./watch.py ${WATCH_FLAGS} \
 		rclone ${RCLONE_GLOBAL_FLAGS} copy \
 		${RCLONE_COPY_FLAGS} \
@@ -61,7 +61,7 @@ $(_checkpoints_10percent) : stamps/% : stamps logs
 		${SRC_BUCKET}/$*/ ${DEST_BUCKET}/$* && \
 	touch $(TOUCH_FLAGS) $@
 
-$(_checkpoints_50percent) : stamps/% : stamps logs
+$(_checkpoints_50percent) : stamps/% : stamps/dir logs/dir
 	./watch.py ${WATCH_FLAGS} \
 		rclone ${RCLONE_GLOBAL_FLAGS} copy \
 		${RCLONE_COPY_FLAGS} \
@@ -69,8 +69,8 @@ $(_checkpoints_50percent) : stamps/% : stamps logs
 		${SRC_BUCKET}/$*/ ${DEST_BUCKET}/$* && \
 	touch $(TOUCH_FLAGS) $@
 
-logs:
+logs/dir:
 	mkdir -p $@
 
-stamps:
+stamps/dir:
 	mkdir -p $@
