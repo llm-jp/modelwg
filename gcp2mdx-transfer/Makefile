@@ -1,8 +1,10 @@
 # A makefile to transfer data from GCS to mdx object storage (S3 compatible)
 
+PARALLEL := 8
+BWLIMIT := 100M
 STATS_INTERVAL := 1m
 RCLONE_GLOBAL_FLAGS := -v --config=rclone.conf --stats=${STATS_INTERVAL}
-RCLONE_COPY_FLAGS := --checksum
+RCLONE_COPY_FLAGS := --checksum --bwlimit=${BWLIMIT} --transfers=${PARALLEL} --checkers=${PARALLEL}
 
 SRC_BUCKET_NON_LUSTRE := gcs:llama-2-172b-checkpoints
 SRC_BUCKET := gcs:llama-2-172b-lustre-checkpoints

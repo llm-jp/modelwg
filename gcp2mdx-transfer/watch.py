@@ -25,7 +25,6 @@ def main():
     command = args.command
     if not command:
         parser.error('No command provided')
-        exit(1)
 
     command_str = ' '.join(command)
     print(f'Running command: `{command_str}`')
@@ -41,5 +40,7 @@ def main():
         if webhook:
             call_slack_webhook(webhook, message)
 
+    return proc.returncode
+
 if __name__ == '__main__':
-    main()
+    exit(main())
