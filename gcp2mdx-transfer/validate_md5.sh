@@ -1,35 +1,32 @@
 #!/bin/bash
 
-set -e
+set -e -o pipefail
 
-# Non lustre checkpoints
-begin=500
-end=12500
-step=500
-gcs_bucket="gcs:llama-2-172b-checkpoints"
-mdx_bucket="mdx-s3:llama-2-172b-checkpoints"
-for iter in $(seq -f 'iter_%07g' $begin $step $end); do
-    gcs_md5="$(rclone --config=rclone.conf md5sum "$gcs_bucket/$iter" | sort -k 2,2)"
-    mdx_md5="$(rclone --config=rclone.conf md5sum "$mdx_bucket/$iter" | sort -k 2,2)"
-    if [ "$gcs_md5" != "$mdx_md5" ]; then
-        echo -e "\e[31m[ERROR]\e[0m MD5 mismatch for $iter"
+check_() {
+    gcs_path="$1"
+    mdx_path="$2"
+    gcs_md5="$(rclone --config=rclone.conf md5sum "$gcs_path" | sort -k 2,2)"
+    mdx_md5="$(rclone --config=rclone.conf md5sum "$mdx_path" | sort -k 2,2)"
+    if [ "$gcs_md5" = "" ]; then
+        echo -e "\e[36m[INFO]\e[0m $gcs_path is empty, skipping..."
+    elif [ "$gcs_md5" != "$mdx_md5" ]; then
+        echo -e "\e[31m[ERROR]\e[0m MD5 mismatch for $gcs_path"
     else
-        echo -e "\e[32m[OK]\e[0m MD5 match for $iter"
+        echo -e "\e[32m[OK]\e[0m MD5 match for $gcs_path"
     fi
-done
+}
 
-# Lustre checkpoints from 13000 to 30000 with step 500
-begin=13000
-end=30000
-step=500
+mdx_bucket="mdx-s3:llama-2-172b-checkpoints"
 gcs_bucket="gcs:llama-2-172b-lustre-checkpoints"
-mdx_bucket="mdx-s3:llama-2-172b-checkpoints"
+first_iter="$(rclone --config=rclone.conf lsd $gcs_bucket | grep -o 'iter_[0-9]\+' | sed 's/^iter_0*//' | grep -E '^[0-9]+000$' | sort -h | head -n1)"
+last_iter="$(rclone --config=rclone.conf lsd $mdx_bucket | grep -o 'iter_[0-9]\+' | sed 's/^iter_0*//' | sort -h | tail -n1)"
+echo "First iteration: $tmux first_iter"
+echo "Last iteration: $last_iter"
+
+# Checkpoints from 31000 to 150000 with step 1000
+begin=31000
+end="$last_iter"
+step=1000
 for iter in $(seq -f 'iter_%07g' $begin $step $end); do
-    gcs_md5="$(rclone --config=rclone.conf md5sum "$gcs_bucket/$iter" | sort -k 2,2)"
-    mdx_md5="$(rclone --config=rclone.conf md5sum "$mdx_bucket/$iter" | sort -k 2,2)"
-    if [ "$gcs_md5" != "$mdx_md5" ]; then
-        echo -e "\e[31m[ERROR]\e[0m MD5 mismatch for $iter"
-    else
-        echo -e "\e[32m[OK]\e[0m MD5 match for $iter"
-    fi
+    check_ "$gcs_bucket/$iter" "$mdx_bucket/$iter"
 done
