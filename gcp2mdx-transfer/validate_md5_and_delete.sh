@@ -19,7 +19,8 @@ check_delete() {
         echo -e "\e[31m[ERROR]\e[0m MD5 mismatch for $gcs_path"
     else
         echo -e "\e[32m[OK]\e[0m MD5 match for $gcs_path"
-        $echo rclone --config=rclone.conf --rmdirs --dry-run delete "$gcs_path"
+        $echo rclone --config=rclone.conf delete --rmdirs "$gcs_path"
+	echo "Delete $gcs_path successfully"
     fi
 }
 
