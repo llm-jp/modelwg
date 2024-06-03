@@ -20,7 +20,7 @@ mdx_bucket="mdx-s3:llama-2-172b-checkpoints"
 gcs_bucket="gcs:llama-2-172b-lustre-checkpoints"
 first_iter="$(rclone --config=rclone.conf lsd $gcs_bucket | grep -o 'iter_[0-9]\+' | sed 's/^iter_0*//' | grep -E '^[0-9]+000$' | sort -h | head -n1)"
 last_iter="$(rclone --config=rclone.conf lsd $mdx_bucket | grep -o 'iter_[0-9]\+' | sed 's/^iter_0*//' | sort -h | tail -n1)"
-echo "First iteration: $tmux first_iter"
+echo "First iteration: $first_iter"
 echo "Last iteration: $last_iter"
 
 # Checkpoints from 31000 to 150000 with step 1000
