@@ -16,10 +16,13 @@ begin_lustre := 13000
 end_10percent := 30000
 begin_50percent := 31000
 end_50percent := 150000
+begin_100percent := 152000
+end_100percent := 300000
 
 _checkpoints_non_lustre = $(shell seq -f 'stamps/iter_%07g' $(begin_non_lustre) 500 $(end_non_lustre))
 _checkpoints_10percent = $(shell seq -f 'stamps/iter_%07g' $(begin_lustre) 500 $(end_10percent))
 _checkpoints_50percent = $(shell seq -f 'stamps/iter_%07g' $(begin_50percent) 1000 $(end_50percent))
+_checkpoints_100percent = $(shell seq -f 'stamps/iter_%07g' $(begin_100percent) 2000 $(end_100percent))
 
 # Default is dry run mode
 dry_run := 1
@@ -44,8 +47,9 @@ endif
 checkpoints_non_lustre : $(_checkpoints_non_lustre)
 checkpoints_10percent : $(_checkpoints_10percent)
 checkpoints_50percent : $(_checkpoints_50percent)
+checkpoints_100percent : $(_checkpoints_100percent)
 
-all : $(checkpoints_non_lustre) $(checkpoints_10percent) $(checkpoints_50percent)
+all : $(checkpoints_non_lustre) $(checkpoints_10percent) $(checkpoints_50percent) $(checkpoints_100percent)
 
 $(_checkpoints_non_lustre) : stamps/% : stamps/dir logs/dir
 	./watch.py ${WATCH_FLAGS} \
@@ -64,6 +68,14 @@ $(_checkpoints_10percent) : stamps/% : stamps/dir logs/dir
 	touch $(TOUCH_FLAGS) $@
 
 $(_checkpoints_50percent) : stamps/% : stamps/dir logs/dir
+	./watch.py ${WATCH_FLAGS} \
+		rclone ${RCLONE_GLOBAL_FLAGS} copy \
+		${RCLONE_COPY_FLAGS} \
+		--log-file=logs/$*.log \
+		${SRC_BUCKET}/$*/ ${DEST_BUCKET}/$* && \
+	touch $(TOUCH_FLAGS) $@
+
+$(_checkpoints_100percent) : stamps/% : stamps/dir logs/dir
 	./watch.py ${WATCH_FLAGS} \
 		rclone ${RCLONE_GLOBAL_FLAGS} copy \
 		${RCLONE_COPY_FLAGS} \
